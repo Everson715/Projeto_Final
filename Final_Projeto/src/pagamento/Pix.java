@@ -20,7 +20,7 @@ public class Pix {
 
     @Override
     public String toString() {
-        return "Dados da compra:" + "\n" +
+        return "Dados da compra:" + "\n" + "\n" +
                 "Nome do Comprador: " + nomeComprador.toUpperCase() + "\n" +
                 "Código de validação: " + idTransacao + "\n" +
                 "Chave PIX do estabelecimento: " + chavePIXEstabelecimento + "\n" +
