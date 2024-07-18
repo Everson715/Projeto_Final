@@ -1,13 +1,15 @@
 package pagamento;
 
+import java.io.Serializable;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Cartao {
+public class Cartao implements Serializable {
 
     // Atributos
+    private static final long serialVersionUID = 1L;
     private String nomeTitular;
     private String numeroCartao;
     private String dataValidade;

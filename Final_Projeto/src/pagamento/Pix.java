@@ -1,9 +1,10 @@
 package pagamento;
 
 import java.util.UUID;
+import java.io.Serializable;
+public class Pix implements Serializable {
 
-public class Pix {
-
+    private static final long serialVersionUID = 1L;
     private final String idTransacao;
     private final String chavePIXEstabelecimento;
     private final double valorCompra; // Modificado para double

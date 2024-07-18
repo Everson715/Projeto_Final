@@ -1,18 +1,25 @@
 package tratarDados;
 
-import ingresso.Ingresso;
 import pagamento.Cartao;
 import pagamento.Pix;
+import ingresso.Ingresso;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class TesteDeConfirmacao {
+public class TesteDeConfirmacao implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     // Atributos
-    private final Scanner scanner;
+    private transient Scanner scanner;
 
     // Construtor
     public TesteDeConfirmacao() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    // Método para reinicializar o Scanner após a desserialização
+    public void reinicializarScanner() {
         this.scanner = new Scanner(System.in);
     }
 

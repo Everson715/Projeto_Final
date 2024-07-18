@@ -1,10 +1,12 @@
 package ingresso;
 
 import java.util.Scanner;
+import java.io.Serializable;
 
-public class Ingresso {
+public class Ingresso implements Serializable {
 
     // Atributos
+    private static final long serialVersionUID = 1L;
     private final double valor;
 
     // Construtor
