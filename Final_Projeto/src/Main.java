@@ -12,6 +12,14 @@ public class Main {
             System.out.println("1. ADM");
             System.out.println("2. Usuário");
             System.out.println("3. Sair");
+
+            // Verificação de entrada válida
+            if (!scanner.hasNextInt()) {
+                System.out.println("Erro: Entrada inválida. Por favor, digite um número.");
+                scanner.next(); // Limpa a entrada inválida
+                continue; // Retorna ao início do loop
+            }
+
             int opcao = scanner.nextInt();
 
             switch (opcao) {
