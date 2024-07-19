@@ -14,21 +14,19 @@ public class ExcluirFilme {
 
         System.out.println("Filmes disponíveis:");
         for (int i = 0; i < CriarFilme.filmesCriados.size(); i++) {
-            System.out.println((i + 1) + ". " + CriarFilme.filmesCriados.get(i).getNome() + " (Sala: " + CriarFilme.filmesCriados.get(i).getSala() + ")");
+            System.out.println((i + 1) + ". " + CriarFilme.filmesCriados.get(i).getNome());
         }
 
         System.out.println("Digite o número do filme que deseja excluir:");
         int opcao = scanner.nextInt();
+        scanner.nextLine(); // Consumir a nova linha deixada pelo nextInt()
 
-        if (opcao < 1 || opcao > CriarFilme.filmesCriados.size()) {
+        if (opcao > 0 && opcao <= CriarFilme.filmesCriados.size()) {
+            CriarFilme filmeParaExcluir = CriarFilme.filmesCriados.get(opcao - 1);
+            CriarFilme.removerFilme(filmeParaExcluir);
+            System.out.println("Filme '" + filmeParaExcluir.getNome() + "' excluído com sucesso.");
+        } else {
             System.out.println("Opção inválida.");
-            return;
         }
-
-        CriarFilme filmeParaExcluir = CriarFilme.filmesCriados.get(opcao - 1);
-        CriarFilme.removerFilme(filmeParaExcluir);
-
-        System.out.println("Filme " + filmeParaExcluir.getNome() + " excluído com sucesso! Sala " + filmeParaExcluir.getSala() + " liberada.");
     }
 }
-

@@ -1,5 +1,6 @@
 import usuarios.ADM;
 import usuarios.Cliente;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -13,31 +14,38 @@ public class Main {
             System.out.println("2. Usuário");
             System.out.println("3. Sair");
 
-            // Verificação de entrada válida
-            if (!scanner.hasNextInt()) {
+            int opcao = -1; // Inicializa com um valor inválido
+
+            try {
+                opcao = scanner.nextInt();
+                scanner.nextLine(); // Consumir a nova linha deixada pelo nextInt()
+            } catch (InputMismatchException e) {
                 System.out.println("Erro: Entrada inválida. Por favor, digite um número.");
-                scanner.next(); // Limpa a entrada inválida
+                scanner.nextLine(); // Limpa a entrada inválida
                 continue; // Retorna ao início do loop
             }
-
-            int opcao = scanner.nextInt();
 
             switch (opcao) {
                 case 1:
                     ADM adm = new ADM();
-                    adm.gerenciarFilmes();
+                    adm.gerenciarFilmes(); // Verifica se o método existe em ADM
                     break;
                 case 2:
                     Cliente usuario = new Cliente();
-                    usuario.iniciarCompra();
+                    boolean continuarComprando = usuario.iniciarCompra(); // Inicia o processo de compra
+                    if (!continuarComprando) {
+                        continuar = false; // Encerra o loop e sai do programa se a compra não for concluída
+                    }
                     break;
                 case 3:
-                    continuar = false;
+                    continuar = false; // Encerra o loop e sai do programa
                     System.out.println("Encerrando o sistema...");
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("Opção inválida. Tente novamente.");
             }
         }
+
+        scanner.close(); // Fechando o Scanner ao final do uso
     }
 }

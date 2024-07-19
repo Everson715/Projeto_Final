@@ -1,17 +1,17 @@
 package filme;
 
+import util.ValidadorDeDados;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CriarFilme {
 
-    //Atributos
+    // Atributos
     private final String nome;
     private final int classeIndicativa;
     private final int duracao;
     private final int sala;
-    private String[] horarios = new String[4];
+    private final String[] horarios;
 
     public static List<CriarFilme> filmesCriados = new ArrayList<>(); // Lista estática para armazenar filmes criados
 
@@ -27,36 +27,18 @@ public class CriarFilme {
 
     // Método para solicitar dados do filme ao usuário
     public static CriarFilme criarNovoFilme() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Digite o nome do filme: ");
-        String nome = scanner.nextLine();
-
-        System.out.println("Digite a classe Indicativa: ");
-        int classeIndicativa = scanner.nextInt();
-
-        System.out.println("Digite a duração do filme em minutos: ");
-        int duracao = scanner.nextInt();
-
-        int sala = alocarSala();
-        String[] horarios = gerarHorarios();
+        String nome = ValidadorDeDados.validarNome();
+        int classeIndicativa = ValidadorDeDados.validarClasseIndicativa();
+        int duracao = ValidadorDeDados.validarDuracao();
+        int sala = ValidadorDeDados.validarSala();
+        String[] horarios = ValidadorDeDados.validarHorarios();
 
         return new CriarFilme(nome, classeIndicativa, duracao, sala, horarios);
     }
 
-    // Método para alocar uma sala (1 a 4)
-    private static int alocarSala() {
-        return (int) (Math.random() * 4) + 1;
-    }
-
     // Método para gerar 4 horários de exibição
     private static String[] gerarHorarios() {
-        String[] horarios = new String[4];
-        horarios[0] = "10:00";
-        horarios[1] = "13:00";
-        horarios[2] = "16:00";
-        horarios[3] = "19:00";
-        return horarios;
+        return new String[]{"10:00", "13:00", "16:00", "19:00"};
     }
 
     // Método toString para exibir informações do filme

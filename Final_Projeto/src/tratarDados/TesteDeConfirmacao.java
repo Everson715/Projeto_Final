@@ -42,7 +42,7 @@ public class TesteDeConfirmacao implements Serializable {
         return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
     }
 
-    // Método para verificar se a compra foi confirmada ou não.
+    // Método para verificar se a compra foi confirmada ou não
     public String confirmacaoCompra() {
         while (true) {
             System.out.println("Deseja confirmar a compra? (1 para Sim, 2 para Não)");
@@ -60,7 +60,7 @@ public class TesteDeConfirmacao implements Serializable {
         }
     }
 
-    public void processarCompra() {
+    public boolean processarCompra() {
         boolean continuarComprando = true;
 
         while (continuarComprando) {
@@ -122,6 +122,7 @@ public class TesteDeConfirmacao implements Serializable {
                 String resposta = scanner.nextLine();
 
                 if (resposta.equals("1") || resposta.equalsIgnoreCase("Sim")) {
+                    continuarComprando = true;
                     break;
                 } else if (resposta.equals("2") || resposta.equalsIgnoreCase("Não")) {
                     continuarComprando = false;
@@ -133,5 +134,6 @@ public class TesteDeConfirmacao implements Serializable {
         }
 
         System.out.println("Processo encerrado.");
+        return !continuarComprando; // Retorna true se o usuário não quiser continuar comprando
     }
 }
