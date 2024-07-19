@@ -1,4 +1,4 @@
-package util;
+package validarDados;
 
 import java.util.Scanner;
 

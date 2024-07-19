@@ -1,6 +1,6 @@
 package filme;
 
-import util.ValidadorDeDados;
+import validarDados.ValidadorDeDados;
 import java.util.ArrayList;
 import java.util.List;
 
