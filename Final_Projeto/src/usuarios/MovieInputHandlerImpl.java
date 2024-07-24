@@ -105,7 +105,7 @@ public class MovieInputHandlerImpl implements MovieInputHandler {
     @Override
     public int getId() {
         while (true) {
-            System.out.print("Digite o ID do filme: ");
+            System.out.print("Digite a sala do filme: ");
             try {
                 int id = scanner.nextInt();
                 scanner.nextLine(); // Limpar o buffer

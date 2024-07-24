@@ -105,7 +105,7 @@ public class Filme {
     @Override
     public String toString() {
         return "Filme:" + "\n" +
-                "ID: " + id + "\n" +
+                "Sala: " + id + "\n" +
                 "Nome: " + nome.toUpperCase() + "\n" +
                 "Classe indicativa: " + classe  + " anos"+ "\n" +
                 "Duração: " + duracao + " min" + "\n" +

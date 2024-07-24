@@ -17,6 +17,7 @@
         // Método que solicita ao usuário quantos ingressos ele deseja comprar
         public int solicitarQuantidadeIngressos(Scanner scanner) {
             while (true) {
+                System.out.println("Valor do Ingresso R$ 35,00");
                 System.out.println("Quantos ingressos você deseja comprar?");
                 String entrada = scanner.nextLine();
 

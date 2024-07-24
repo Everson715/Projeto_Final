@@ -43,7 +43,7 @@ public class Cliente {
 
     // Método para selecionar o filme e o horário
     private void selectMovieAndShowtime() {
-        System.out.print("Digite o id do filme a ser selecionado: ");
+        System.out.print("Digite a sala do filme a ser selecionado: ");
         try {
             salaSelecionada = scanner.nextInt(); // Armazena o ID do filme como sala
             scanner.nextLine(); // Consumir a nova linha
@@ -65,9 +65,9 @@ public class Cliente {
         if (movieOpt.isPresent()) {
             Filme movie = movieOpt.get();
             filmeSelecionado = movie; // Armazena o filme selecionado
-            System.out.println("Filme selecionado: " + movie.getNome());
+            System.out.println("Filme selecionado: " + movie.getNome().toUpperCase());
             System.out.println("Horários disponíveis: " + movie.getHorario());
-            System.out.println("Gênero do Filme: " + movie.getGenero());
+            System.out.println("Gênero do Filme: " + movie.getGenero().toUpperCase());
             System.out.println("Classificação Indicativa: " + movie.getClasse() + " anos");
 
             System.out.print("Digite o horário a ser selecionado (ex.: 10:00): ");
