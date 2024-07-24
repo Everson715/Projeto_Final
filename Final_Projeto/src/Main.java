@@ -92,10 +92,37 @@ public class Main {
         boolean continuar = true;
 
         while (continuar) {
-            System.out.println("Escolha o tipo de acesso:");
-            System.out.println("1. ADM");
-            System.out.println("2. Usuário");
-            System.out.println("3. Sair");
+            // Obter a largura do console
+            int larguraConsole = 220; // Ajuste conforme necessário
+
+            // Texto a ser centralizado
+            String arteAscii =
+                    "\n"+
+                    "█████╗ ██████╗ ███████╗ ██████╗ ██╗     ██╗   ██╗████████╗███████╗" + "\n" +
+                            "██╔══██╗██╔══██╗██╔════╝██╔═══██╗██║     ██║   ██║╚══██╔══╝██╔════╝" + "\n" +
+                            "███████║██████╔╝███████╗██║   ██║██║     ██║   ██║   ██║   █████╗" + "\n" +
+                            "██╔══██║██╔══██╗╚════██║██║   ██║██║     ██║   ██║   ██║   ██╔══╝" + "\n" +
+                            "██║  ██║██████╔╝███████║╚██████╔╝███████╗╚██████╔╝   ██║   ███████╗" + "\n" +
+                            "╚═╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝    ╚═╝   ╚══════╝" + "\n" +
+                            " ██████╗██╗███╗   ██╗███████╗███╗   ███╗ █████╗" + "\n" +
+                            "██╔════╝██║████╗  ██║██╔════╝████╗ ████║██╔══██╗"+ "\n" +
+                            "██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║"+ "\n" +
+                            "██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║"+ "\n" +
+                            "╚██████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║"+ "\n" +
+                            "╚═════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝";
+
+            // Centralizar e imprimir o texto
+            imprimirCentralizado(arteAscii, larguraConsole);
+            System.out.println(); // Espaço entre a arte e o menu
+
+            // Texto do menu
+            String menuTexto =
+                    "Escolha o tipo de acesso:" + "\n" + "1. ADM" + "\n" +
+                            "2. Usuário" + "\n" +
+                            "3. Sair";
+
+            // Centralizar e imprimir o menu
+            imprimirCentralizado(menuTexto, larguraConsole);
 
             int opcao = -1; // Inicializa com um valor inválido
 
@@ -166,5 +193,14 @@ public class Main {
         }
 
         scanner.close(); // Fechando o Scanner ao final do uso
+    }
+
+    private static void imprimirCentralizado(String texto, int larguraConsole) {
+        String[] linhas = texto.split("\n");
+        for (String linha : linhas) {
+            int espacosEsquerda = (larguraConsole - linha.length()) / 2;
+            String espacos = " ".repeat(Math.max(0, espacosEsquerda));
+            System.out.println(espacos + linha);
+        }
     }
 }
