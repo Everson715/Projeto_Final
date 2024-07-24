@@ -21,7 +21,7 @@ public class Pix implements Serializable {
 
     @Override
     public String toString() {
-        return "Dados da compra:" + "\n" + "\n" +
+        return "\n" + "Dados da compra:" + "\n" + "\n" +
                 "Nome do Comprador: " + nomeComprador.toUpperCase() + "\n" +
                 "Código de validação: " + idTransacao + "\n" +
                 "Chave PIX do estabelecimento: " + chavePIXEstabelecimento + "\n" +

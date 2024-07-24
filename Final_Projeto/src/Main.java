@@ -1,12 +1,60 @@
+import filme.Filme;
 import usuarios.ADM;
 import usuarios.Cliente;
+import usuarios.MovieInputHandler;
+import database.DatabaseOperations;
+import database.BancoDeDados;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        // Implementação concreta do BancoDeDados
+        DatabaseOperations databaseOperations = new BancoDeDados() {
+            @Override
+            public void addMovie(String nome, int classe, int duracao, String genero, List<String> horario) {
+                super.addMovie(nome, classe, duracao, genero, horario);
+            }
+
+            @Override
+            public Optional<Filme> getMovie(int id) {
+                return super.getMovie(id);
+            }
+
+            @Override
+            public void updateMovie(int id, String nome, int classe, int duracao, String genero, List<String> horario) {
+                super.updateMovie(id, nome, classe, duracao, genero, horario);
+            }
+
+            @Override
+            public void deleteMovie(int id) {
+                super.deleteMovie(id);
+            }
+
+            @Override
+            public void listMovies() {
+                super.listMovies();
+            }
+
+            @Override
+            public void listMoviesWithShowtimes() {
+                super.listMoviesWithShowtimes();
+            }
+
+            @Override
+            public int getMoviesCount() {
+                return super.getMoviesCount();
+            }
+        };
+
+        // Implementação do MovieInputHandler
+        MovieInputHandler inputHandler = new MovieInputHandlerImpl(scanner); // Supondo que MovieInputHandlerImpl é a implementação concreta
+
         boolean continuar = true;
 
         while (continuar) {
@@ -28,7 +76,7 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    ADM adm = new ADM(scanner); // Passa o Scanner para a instância ADM
+                    ADM adm = new ADM(scanner, databaseOperations); // Passa o Scanner e DatabaseOperations para a instância ADM
                     boolean adminMenu = true;
                     while (adminMenu) {
                         System.out.println("Menu ADM:");
@@ -36,8 +84,7 @@ public class Main {
                         System.out.println("2. Atualizar filme");
                         System.out.println("3. Excluir filme");
                         System.out.println("4. Listar filmes");
-                        System.out.println("5. Selecionar filme e horário");
-                        System.out.println("6. Voltar ao menu principal");
+                        System.out.println("5. Voltar ao menu principal");
 
                         int adminOpcao = -1;
 
@@ -64,9 +111,6 @@ public class Main {
                                 adm.listMovies();
                                 break;
                             case 5:
-                                adm.selectMovieAndShowtime();
-                                break;
-                            case 6:
                                 adminMenu = false; // Voltar ao menu principal
                                 break;
                             default:

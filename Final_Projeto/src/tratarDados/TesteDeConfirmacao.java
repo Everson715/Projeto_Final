@@ -59,6 +59,9 @@ public class TesteDeConfirmacao {
     }
 
     public boolean processarCompra() {
+
+        System.out.println("Iniciando Compra");
+
         boolean continuarComprando = true;
 
         while (continuarComprando) {

@@ -6,21 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BancoDeDados{
-    private static List<Filme> movies = new ArrayList<>();
-    private static int nextId = 1;
+/**
+ * Implementação concreta da interface DatabaseOperations para gerenciamento de filmes.
+ */
+public class BancoDeDados implements DatabaseOperations {
+    private List<Filme> movies = new ArrayList<>();
+    private int nextId = 1;
 
-    public static void addMovie(String nome, int classe, int duracao, String genero, List<String> horario) {
+    @Override
+    public void addMovie(String nome, int classe, int duracao, String genero, List<String> horario) {
         Filme movie = new Filme(nextId++, nome, classe, duracao, genero, horario);
         movies.add(movie);
-        System.out.println("Movie added successfully: " + movie);
+        System.out.println("Filme adicionado com sucesso: " + movie);
     }
 
-    public static Optional<Filme> getMovie(int id) {
+    @Override
+    public Optional<Filme> getMovie(int id) {
         return movies.stream().filter(movie -> movie.getId() == id).findFirst();
     }
 
-    public static void updateMovie(int id, String nome, int classe, int duracao, String genero, List<String> horario) {
+    @Override
+    public void updateMovie(int id, String nome, int classe, int duracao, String genero, List<String> horario) {
         Optional<Filme> optionalMovie = getMovie(id);
         if (optionalMovie.isPresent()) {
             Filme movie = optionalMovie.get();
@@ -35,7 +41,8 @@ public class BancoDeDados{
         }
     }
 
-    public static void deleteMovie(int id) {
+    @Override
+    public void deleteMovie(int id) {
         Optional<Filme> optionalMovie = getMovie(id);
         if (optionalMovie.isPresent()) {
             movies.remove(optionalMovie.get());
@@ -45,7 +52,8 @@ public class BancoDeDados{
         }
     }
 
-    public static void listMovies() {
+    @Override
+    public void listMovies() {
         if (movies.isEmpty()) {
             System.out.println("Nenhum filme encontrado.");
         } else {
@@ -53,15 +61,21 @@ public class BancoDeDados{
         }
     }
 
-    public static void listMoviesWithShowtimes() {
+    @Override
+    public void listMoviesWithShowtimes() {
         if (movies.isEmpty()) {
             System.out.println("Nenhum filme encontrado.");
         } else {
             for (Filme movie : movies) {
                 System.out.println("ID: " + movie.getId() + "\n" +
-                        "Nome : " + movie.getNome() + "\n" +
-                        "Horario : " + movie.getHorario());
+                        "Nome: " + movie.getNome() + "\n" +
+                        "Horários: " + String.join(", ", movie.getHorario()));
             }
         }
+    }
+
+    @Override
+    public int getMoviesCount() {
+        return movies.size(); // Retorna o número total de filmes
     }
 }
