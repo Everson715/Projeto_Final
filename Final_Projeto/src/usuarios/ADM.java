@@ -27,7 +27,6 @@ public class ADM implements MovieManager {
         List<String> horario = inputHandler.getHorarios();
         try {
             databaseOperations.addMovie(nome, classe, duracao, genero, horario);
-            System.out.println("Filme adicionado com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro ao adicionar o filme: " + e.getMessage());
         }

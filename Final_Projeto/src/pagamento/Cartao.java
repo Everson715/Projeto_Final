@@ -114,23 +114,21 @@ public class Cartao implements Serializable {
     }
 
     // Método para perguntar ao usuário em quantas vezes ele deseja parcelar a compra
-    public void perguntarParcelas(Scanner scanner) {
-        if (!tipoDePagamento.equalsIgnoreCase("débito")) {
-            while (true) {
-                System.out.print("Digite em quantas vezes deseja parcelar a compra (até 3 vezes): ");
-                String entrada = scanner.nextLine();
+    private void perguntarParcelas(Scanner scanner) {
+        while (true) {
+            System.out.print("Digite em quantas vezes deseja parcelar a compra (até 3 vezes): ");
+            String entrada = scanner.nextLine();
 
-                try {
-                    int numeroParcelas = Integer.parseInt(entrada);
-                    if (numeroParcelas >= 1 && numeroParcelas <= 3) {
-                        this.parcelas = numeroParcelas;
-                        break;
-                    } else {
-                        System.out.println("Número de parcelas inválido. Digite um número entre 1 e 3.");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Erro: Digite um número válido para as parcelas.");
+            try {
+                int numeroParcelas = Integer.parseInt(entrada);
+                if (numeroParcelas >= 1 && numeroParcelas <= 3) {
+                    this.parcelas = numeroParcelas;
+                    break;
+                } else {
+                    System.out.println("Número de parcelas inválido. Digite um número entre 1 e 3.");
                 }
+            } catch (NumberFormatException e) {
+                System.out.println("Erro: Digite um número válido para as parcelas.");
             }
         }
     }
@@ -153,7 +151,7 @@ public class Cartao implements Serializable {
     }
 
     // Método para gerar o ID do pagamento
-    public void gerarIdPagamento() {
+    private void gerarIdPagamento() {
         this.idPagamento = UUID.randomUUID().toString();
     }
 

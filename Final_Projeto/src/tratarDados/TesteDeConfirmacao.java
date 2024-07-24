@@ -13,12 +13,7 @@ public class TesteDeConfirmacao {
 
     // Construtor
     public TesteDeConfirmacao(Scanner scanner) {
-        this.scanner = new Scanner(System.in);
-    }
-
-    // Método para reinicializar o Scanner
-    public void reinicializarScanner() {
-        this.scanner = new Scanner(System.in);
+        this.scanner = scanner;
     }
 
     // Método para verificar se o CPF contém apenas números
@@ -41,17 +36,17 @@ public class TesteDeConfirmacao {
     }
 
     // Método para verificar se a compra foi confirmada ou não
-    public String confirmacaoCompra() {
+    public boolean confirmarCompra() {
         while (true) {
             System.out.println("Deseja confirmar a compra? (1 para Sim, 2 para Não)");
             String confirmacao = scanner.nextLine();
 
             if (confirmacao.equals("1") || confirmacao.equalsIgnoreCase("Sim")) {
                 System.out.println("Pagamento realizado com sucesso!");
-                return confirmacao;
+                return true;
             } else if (confirmacao.equals("2") || confirmacao.equalsIgnoreCase("Não")) {
                 System.out.println("Pagamento cancelado com sucesso!");
-                return confirmacao;
+                return false;
             } else {
                 System.out.println("Erro ao realizar a compra! Escolha novamente.");
             }
@@ -80,8 +75,7 @@ public class TesteDeConfirmacao {
             int quantidadeIngressos = ingresso.solicitarQuantidadeIngressos(scanner);
             double valorFinal = ingresso.solicitarTipoIngressos(quantidadeIngressos, scanner);
 
-            String confirmacao = confirmacaoCompra();
-            if (confirmacao.equals("1") || confirmacao.equalsIgnoreCase("Sim")) {
+            if (confirmarCompra()) {
                 while (true) {
                     System.out.println("Digite a escolha de pagamento (1 para PIX, 2 para Cartão): ");
                     String escolha = scanner.nextLine();
@@ -103,7 +97,6 @@ public class TesteDeConfirmacao {
                         cartao.identificarBandeira();
                         cartao.capturarCvc(scanner);
                         cartao.capturarTipoDePagamento(scanner);
-                        cartao.perguntarParcelas(scanner);
                         cartao.setValor(valorFinal); // Define o valor final no cartão
 
                         // Simulação de confirmação de pagamento

@@ -104,10 +104,10 @@ public class Filme {
     public String toString() {
         return "Filme:" + "\n" +
                 "ID: " + id + "\n" +
-                "Nome: " + nome + "\n" +
-                "Classe indicativa: " + classe + "\n" +
+                "Nome: " + nome.toUpperCase() + "\n" +
+                "Classe indicativa: " + " anos"+ classe + "\n" +
                 "Duração: " + duracao + " min" + "\n" +
-                "Gênero: " + genero + "\n" +
+                "Gênero: " + genero.toUpperCase() + "\n" +
                 "Horário de exibição: " + horario ;
     }
 }
