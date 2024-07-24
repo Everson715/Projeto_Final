@@ -2,13 +2,14 @@ import filme.Filme;
 import usuarios.ADM;
 import usuarios.Cliente;
 import usuarios.MovieInputHandler;
+import usuarios.MovieInputHandlerImpl; // Importando a implementação concreta
 import database.DatabaseOperations;
-import database.BancoDeDados;
+import database.BancoDeDados; // Certifique-se de que há uma implementação concreta para BancoDeDados
 
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,37 +19,70 @@ public class Main {
         DatabaseOperations databaseOperations = new BancoDeDados() {
             @Override
             public void addMovie(String nome, int classe, int duracao, String genero, List<String> horario) {
-                super.addMovie(nome, classe, duracao, genero, horario);
+                try {
+                    super.addMovie(nome, classe, duracao, genero, horario);
+                    System.out.println("Filme adicionado com sucesso.");
+                } catch (Exception e) {
+                    System.out.println("Erro ao adicionar filme: " + e.getMessage());
+                }
             }
 
             @Override
             public Optional<Filme> getMovie(int id) {
-                return super.getMovie(id);
+                try {
+                    return super.getMovie(id);
+                } catch (Exception e) {
+                    System.out.println("Erro ao buscar filme: " + e.getMessage());
+                    return Optional.empty();
+                }
             }
 
             @Override
             public void updateMovie(int id, String nome, int classe, int duracao, String genero, List<String> horario) {
-                super.updateMovie(id, nome, classe, duracao, genero, horario);
+                try {
+                    super.updateMovie(id, nome, classe, duracao, genero, horario);
+                    System.out.println("Filme atualizado com sucesso.");
+                } catch (Exception e) {
+                    System.out.println("Erro ao atualizar filme: " + e.getMessage());
+                }
             }
 
             @Override
             public void deleteMovie(int id) {
-                super.deleteMovie(id);
+                try {
+                    super.deleteMovie(id);
+                    System.out.println("Filme excluído com sucesso.");
+                } catch (Exception e) {
+                    System.out.println("Erro ao excluir filme: " + e.getMessage());
+                }
             }
 
             @Override
             public void listMovies() {
-                super.listMovies();
+                try {
+                    super.listMovies();
+                } catch (Exception e) {
+                    System.out.println("Erro ao listar filmes: " + e.getMessage());
+                }
             }
 
             @Override
             public void listMoviesWithShowtimes() {
-                super.listMoviesWithShowtimes();
+                try {
+                    super.listMoviesWithShowtimes();
+                } catch (Exception e) {
+                    System.out.println("Erro ao listar filmes com horários: " + e.getMessage());
+                }
             }
 
             @Override
             public int getMoviesCount() {
-                return super.getMoviesCount();
+                try {
+                    return super.getMoviesCount();
+                } catch (Exception e) {
+                    System.out.println("Erro ao contar filmes: " + e.getMessage());
+                    return 0;
+                }
             }
         };
 
@@ -99,16 +133,16 @@ public class Main {
 
                         switch (adminOpcao) {
                             case 1:
-                                adm.addMovie();
+                                adm.addMovie(); // Chamando método para adicionar filme
                                 break;
                             case 2:
-                                adm.updateMovie();
+                                adm.updateMovie(); // Chamando método para atualizar filme
                                 break;
                             case 3:
-                                adm.deleteMovie();
+                                adm.deleteMovie(); // Chamando método para excluir filme
                                 break;
                             case 4:
-                                adm.listMovies();
+                                adm.listMovies(); // Chamando método para listar filmes
                                 break;
                             case 5:
                                 adminMenu = false; // Voltar ao menu principal
@@ -119,7 +153,7 @@ public class Main {
                     }
                     break;
                 case 2:
-                    Cliente usuario = new Cliente(scanner);
+                    Cliente usuario = new Cliente(scanner, databaseOperations); // Passa o Scanner e DatabaseOperations para a instância Cliente
                     usuario.mostrarFilmesEIniciarCompra(); // Mostra filmes e inicia compra
                     break;
                 case 3:

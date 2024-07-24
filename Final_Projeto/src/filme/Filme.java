@@ -106,7 +106,7 @@ public class Filme {
                 "ID: " + id + "\n" +
                 "Nome: " + nome + "\n" +
                 "Classe indicativa: " + classe + "\n" +
-                "Duração: " + duracao + "min" + "\n" +
+                "Duração: " + duracao + " min" + "\n" +
                 "Gênero: " + genero + "\n" +
                 "Horário de exibição: " + horario ;
     }

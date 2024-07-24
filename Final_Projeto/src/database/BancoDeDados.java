@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Implementação concreta da interface DatabaseOperations para gerenciamento de filmes.
- */
 public class BancoDeDados implements DatabaseOperations {
     private List<Filme> movies = new ArrayList<>();
     private int nextId = 1;
@@ -43,23 +40,41 @@ public class BancoDeDados implements DatabaseOperations {
 
     @Override
     public void deleteMovie(int id) {
-        Optional<Filme> optionalMovie = getMovie(id);
-        if (optionalMovie.isPresent()) {
-            movies.remove(optionalMovie.get());
-            System.out.println("Filme excluído com sucesso");
-        } else {
-            System.out.println("Filme não encontrado com id: " + id);
+        try {
+            Optional<Filme> optionalMovie = getMovie(id);
+
+            if (optionalMovie.isPresent()) {
+                boolean removed = movies.remove(optionalMovie.get());
+
+                if (removed) {
+                    System.out.println(" ");
+                } else {
+                    System.out.println("Erro ao remover o filme. Por favor, tente novamente.");
+                }
+            } else {
+                System.out.println("Filme não encontrado com id: " + id);
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um erro ao tentar excluir o filme: " + e.getMessage());
+            e.printStackTrace(); // Opcional: fornece detalhes adicionais sobre a exceção
         }
     }
 
+
     @Override
     public void listMovies() {
-        if (movies.isEmpty()) {
-            System.out.println("Nenhum filme encontrado.");
-        } else {
-            movies.forEach(System.out::println);
+        try {
+            if (movies.isEmpty()) {
+                System.out.println("Nenhum filme encontrado.");
+            } else {
+                movies.forEach(System.out::println);
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um erro ao tentar listar os filmes: " + e.getMessage());
+            e.printStackTrace(); // Opcional: fornece detalhes adicionais sobre a exceção
         }
     }
+
 
     @Override
     public void listMoviesWithShowtimes() {

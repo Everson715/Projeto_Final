@@ -3,20 +3,19 @@ package usuarios;
 import database.DatabaseOperations;
 import filme.Filme;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class ADM implements MovieManager {
     private Scanner scanner;
-    private final InputHandler inputHandler;
+    private final MovieInputHandler inputHandler;
     private DatabaseOperations databaseOperations;
 
     public ADM(Scanner scanner, DatabaseOperations databaseOperations) {
         this.scanner = scanner;
         this.databaseOperations = databaseOperations;
-        this.inputHandler = new MovieInputHandler(scanner);
+        this.inputHandler = new MovieInputHandlerImpl(scanner); // Correção para usar a implementação correta
     }
 
     @Override
@@ -51,25 +50,22 @@ public class ADM implements MovieManager {
     }
 
     @Override
-    public void deleteMovie() {
-        boolean validInput = false;
-        int id = -1;
-
-        while (!validInput) {
-            try {
-                id = inputHandler.getId();
-                validInput = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Erro: Entrada inválida. Por favor, digite um número inteiro para o ID.");
-                inputHandler.clearInput(); // Assuming inputHandler has a method to clear invalid input
-            }
-        }
-
+    public void deleteMovie(){
+        int id = inputHandler.getId();
         try {
-            databaseOperations.deleteMovie(id);
-            System.out.println("Filme excluído com sucesso!");
+            // Verifica se o filme existe antes de tentar deletar
+            Optional<Filme> filmeOpt = databaseOperations.getMovie(id);
+            if (filmeOpt.isPresent()) {
+                databaseOperations.deleteMovie(id);
+                System.out.println("Filme excluído com sucesso!");
+            } else {
+                System.out.println("Filme com ID " + id + " não encontrado.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("ID inválido fornecido: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Erro ao excluir o filme: " + e.getMessage());
+            e.printStackTrace(); // Opcional: fornece detalhes adicionais sobre a exceção
         }
     }
 
@@ -77,9 +73,7 @@ public class ADM implements MovieManager {
     @Override
     public void listMovies() {
         try {
-            // Tenta listar os filmes
             databaseOperations.listMovies();
-
         } catch (Exception e) {
             // Captura qualquer exceção e informa o erro
             System.out.println("Erro ao listar filmes: " + e.getMessage());
@@ -93,7 +87,6 @@ public class ADM implements MovieManager {
         }
         System.out.println("Voltando ao menu ADM...");
     }
-
 
     @Override
     public void selectMovieAndShowtime() {
