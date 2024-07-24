@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class Filme {
+
+    //Atributos
     private int id;
     private String nome;
     private int classe; // Age rating
@@ -105,7 +107,7 @@ public class Filme {
         return "Filme:" + "\n" +
                 "ID: " + id + "\n" +
                 "Nome: " + nome.toUpperCase() + "\n" +
-                "Classe indicativa: " + " anos"+ classe + "\n" +
+                "Classe indicativa: " + classe  + " anos"+ "\n" +
                 "Duração: " + duracao + " min" + "\n" +
                 "Gênero: " + genero.toUpperCase() + "\n" +
                 "Horário de exibição: " + horario ;
