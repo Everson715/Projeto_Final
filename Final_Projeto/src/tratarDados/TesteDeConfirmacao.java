@@ -4,21 +4,19 @@ import pagamento.Cartao;
 import pagamento.Pix;
 import ingresso.Ingresso;
 
-import java.io.Serializable;
 import java.util.Scanner;
 
-public class TesteDeConfirmacao implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class TesteDeConfirmacao {
 
     // Atributos
-    private transient Scanner scanner;
+    private Scanner scanner;
 
     // Construtor
-    public TesteDeConfirmacao() {
+    public TesteDeConfirmacao(Scanner scanner) {
         this.scanner = new Scanner(System.in);
     }
 
-    // Método para reinicializar o Scanner após a desserialização
+    // Método para reinicializar o Scanner
     public void reinicializarScanner() {
         this.scanner = new Scanner(System.in);
     }
@@ -74,7 +72,7 @@ public class TesteDeConfirmacao implements Serializable {
             }
 
             String cpf = receberCpf();
-            Ingresso ingresso = new Ingresso(50.0); // Exemplo de valor de ingresso
+            Ingresso ingresso = new Ingresso(35.0); // valor do ingresso
 
             int quantidadeIngressos = ingresso.solicitarQuantidadeIngressos(scanner);
             double valorFinal = ingresso.solicitarTipoIngressos(quantidadeIngressos, scanner);

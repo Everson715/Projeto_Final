@@ -1,20 +1,20 @@
 package ingresso;
 
 import java.util.Scanner;
-import java.io.Serializable;
 
-public class Ingresso implements Serializable {
+public class Ingresso {
 
     // Atributos
-    private static final long serialVersionUID = 1L;
     private final double valor;
+    private static final int LIMITE_INGRESSOS = 49;
+    private static int ingressosVendidos = 0; // Contador de ingressos vendidos
 
     // Construtor
     public Ingresso(double valor) {
         this.valor = valor;
     }
 
-    // Método que solicita ao usuário quantos ingressos ele deseja ter
+    // Método que solicita ao usuário quantos ingressos ele deseja comprar
     public int solicitarQuantidadeIngressos(Scanner scanner) {
         while (true) {
             System.out.println("Quantos ingressos você deseja comprar?");
@@ -22,8 +22,11 @@ public class Ingresso implements Serializable {
 
             try {
                 int quantidade = Integer.parseInt(entrada);
-                if (quantidade > 0) {
+                if (quantidade > 0 && (ingressosVendidos + quantidade) <= LIMITE_INGRESSOS) {
+                    ingressosVendidos += quantidade;
                     return quantidade;
+                } else if ((ingressosVendidos + quantidade) > LIMITE_INGRESSOS) {
+                    System.out.println("Erro: o número total de ingressos vendidos não pode exceder " + LIMITE_INGRESSOS + ". Tente novamente.");
                 } else {
                     System.out.println("Erro: a quantidade de ingressos deve ser maior que zero. Tente novamente.");
                 }
@@ -62,5 +65,15 @@ public class Ingresso implements Serializable {
     // Método que calcula o valor final baseado na quantidade de ingressos que o usuário digitou
     public double calcularValorFinal(int quantidade) {
         return valor * quantidade;
+    }
+
+    // Método que retorna a quantidade de ingressos vendidos
+    public static int getIngressosVendidos() {
+        return ingressosVendidos;
+    }
+
+    // Método para resetar a quantidade de ingressos vendidos (se necessário)
+    public static void resetIngressosVendidos() {
+        ingressosVendidos = 0;
     }
 }
