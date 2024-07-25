@@ -13,7 +13,7 @@ public class Filme {
     private String genero;
     private List<String> horario;
 
-    // Expressão regular para validar o formato do horário (hh:mm)
+    // Método para validar o formato do horário (hh:mm)
     private static final Pattern HORARIO_PATTERN = Pattern.compile("^(?:[01]\\d|2[0-3]):[0-5]\\d$");
 
     public Filme(int id, String nome, int classe, int duracao, String genero, List<String> horario) {
@@ -32,7 +32,7 @@ public class Filme {
 
     public void setId(int id) {
         if (id <= 0) {
-            throw new IllegalArgumentException("ID do filme deve ser um número positivo.");
+            throw new IllegalArgumentException("A sala do filme deve ser um número positivo.");
         }
         this.id = id;
     }

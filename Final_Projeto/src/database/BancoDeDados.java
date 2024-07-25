@@ -34,7 +34,7 @@ public class BancoDeDados implements DatabaseOperations {
             movie.setHorario(horario);
             System.out.println("Filme atualizado com sucesso: " + movie);
         } else {
-            System.out.println("Filme não encontrado com id: " + id);
+            System.out.println("Filme não encontrado com Sala: " + id);
         }
     }
 
@@ -52,14 +52,13 @@ public class BancoDeDados implements DatabaseOperations {
                     System.out.println("Erro ao remover o filme. Por favor, tente novamente.");
                 }
             } else {
-                System.out.println("Filme não encontrado com id: " + id);
+                System.out.println("Filme não encontrado com Sala: " + id);
             }
         } catch (Exception e) {
             System.out.println("Ocorreu um erro ao tentar excluir o filme: " + e.getMessage());
             e.printStackTrace(); // Opcional: fornece detalhes adicionais sobre a exceção
         }
     }
-
 
     @Override
     public void listMovies() {
@@ -75,8 +74,7 @@ public class BancoDeDados implements DatabaseOperations {
         }
     }
 
-
-    @Override
+    @Override // Modificação para incluir classificação indicativa
     public void listMoviesWithShowtimes() {
         if (movies.isEmpty()) {
             System.out.println("Nenhum filme encontrado.");
@@ -84,7 +82,8 @@ public class BancoDeDados implements DatabaseOperations {
             for (Filme movie : movies) {
                 System.out.println("ID: " + movie.getId() + "\n" +
                         "Nome: " + movie.getNome() + "\n" +
-                        "Horários: " + String.join(", ", movie.getHorario()));
+                        "Horários: " + String.join(", ", movie.getHorario()) + "\n" +
+                        "Classificação Indicativa: " + movie.getClasse() + " anos\n");
             }
         }
     }

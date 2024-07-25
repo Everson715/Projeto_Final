@@ -28,7 +28,7 @@ public class Cliente {
     // Método para mostrar filmes em cartaz e iniciar a compra
     public void mostrarFilmesEIniciarCompra() {
         try {
-            databaseOperations.listMoviesWithShowtimes(); // Lista filmes e horários disponíveis
+            databaseOperations.listMoviesWithShowtimes(); // Lista filmes e horários disponíveis com classificação indicativa
         } catch (Exception e) {
             System.out.println("Erro ao listar filmes com horários: " + e.getMessage());
             return; // Interrompe a execução se houver erro ao listar filmes
@@ -48,7 +48,7 @@ public class Cliente {
             salaSelecionada = scanner.nextInt(); // Armazena o ID do filme como sala
             scanner.nextLine(); // Consumir a nova linha
         } catch (InputMismatchException e) {
-            System.out.println("Erro: ID do filme inválido. Por favor, digite um número.");
+            System.out.println("Erro: Sala do filme inválida. Por favor, digite um número.");
             scanner.nextLine(); // Limpar o buffer
             selectMovieAndShowtime(); // Permite ao usuário tentar novamente
             return;
@@ -74,7 +74,8 @@ public class Cliente {
             String horario = scanner.nextLine();
             if (movie.getHorario().contains(horario)) {
                 horarioSelecionado = horario; // Armazena o horário selecionado
-                System.out.println("Você selecionou o filme " + movie.getNome() + " às " + horario);
+                System.out.println("Você selecionou o filme " + movie.getNome() + " às " + horario +
+                		"\n" +"Classificação Indicativa: " + movie.getClass() + "anos");
             } else {
                 System.out.println("Horário selecionado inválido.");
                 selectMovieAndShowtime(); // Permite ao usuário tentar novamente
