@@ -39,3 +39,6 @@ Aqui está o link do [repositório](https://github.com/Syfy7/Projeto_Final.git).
 1. Abra o projeto em sua IDE de preferência (por exemplo, IntelliJ IDEA, Eclipse).
 2. Compile o código.
 3. Execute o sistema através da IDE, tudo acontecerá no terminal.
+
+## Imagens
+![Menu principal](caminho/para/imagem/nome-da-imagem.extensão)
