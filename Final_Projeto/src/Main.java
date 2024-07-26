@@ -15,6 +15,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+
         // Implementação concreta do BancoDeDados
         DatabaseOperations databaseOperations = new BancoDeDados(); // Supõe-se que BancoDeDados é uma classe concreta
 

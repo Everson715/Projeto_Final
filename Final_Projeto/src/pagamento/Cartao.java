@@ -155,6 +155,14 @@ public class Cartao implements Serializable {
         this.idPagamento = UUID.randomUUID().toString();
     }
 
+//    private gerarParcela() {
+//        double valorParcela = 0;
+//        if (parcelas > 0) {
+//            valorParcela = valor / parcelas;
+//        }
+//        return valorParcela;
+//    }
+
     @Override
     public String toString() {
         double valorParcela = 0;
