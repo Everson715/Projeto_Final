@@ -41,4 +41,4 @@ Aqui está o link do [repositório](https://github.com/Syfy7/Projeto_Final.git).
 3. Execute o sistema através da IDE, tudo acontecerá no terminal.
 
 ## Imagens
-![Menu principal](Projeto_Final/images/Absolute Cinema.png)
+![Menu principal](https://github.com/Syfy7/Projeto_Final/blob/e8157b081513c4146cde1295809cd172c0c5ce73/images/Absolute%20Cinema.png)
