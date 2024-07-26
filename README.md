@@ -42,3 +42,8 @@ Aqui está o link do [repositório](https://github.com/Syfy7/Projeto_Final.git).
 
 ## Imagens
 ![Menu principal](https://github.com/Syfy7/Projeto_Final/blob/e8157b081513c4146cde1295809cd172c0c5ce73/images/Absolute%20Cinema.png)
+Menu principal no terminal
+
+![Menu do ADM](https://github.com/Syfy7/Projeto_Final/blob/07e3bba0720d105a5380e1c4aaec00f7ac3483fa/images/Captura%20de%20tela%202024-07-26%20193354.png)
+
+Menu do administrador
