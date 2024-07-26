@@ -23,7 +23,7 @@ public class TesteDeConfirmacao {
             String cpf = scanner.nextLine();
 
             if (cpf.matches("\\d{11}")) { // Verifica se o CPF tem exatamente 11 dígitos
-                return cpf;
+                return formatarCpf(cpf); // Formata o CPF antes de retornar
             } else {
                 System.out.println("Erro: o CPF deve conter exatamente 11 números. Tente novamente.");
             }
@@ -81,12 +81,11 @@ public class TesteDeConfirmacao {
                     String escolha = scanner.nextLine();
 
                     if (escolha.equals("1") || escolha.equalsIgnoreCase("Pix")) {
-                        String cpfFormatado = formatarCpf(cpf);
                         String chavePixEstabelecimento = "u123y8ur891iu21h-9u1h931";
                         System.out.println("Copie a chave PIX do estabelecimento: " + chavePixEstabelecimento);
 
                         // Simulação de confirmação de pagamento
-                        Pix pagamento = new Pix(chavePixEstabelecimento, valorFinal, cpfFormatado, nomeComprador);
+                        Pix pagamento = new Pix(chavePixEstabelecimento, valorFinal, cpf, nomeComprador);
                         System.out.println(pagamento);
 
                         break; // Saída do loop

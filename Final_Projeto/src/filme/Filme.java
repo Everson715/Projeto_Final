@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class Filme {
+
+    //Atributos
     private int id;
     private String nome;
     private int classe; // Age rating
@@ -11,7 +13,7 @@ public class Filme {
     private String genero;
     private List<String> horario;
 
-    // Expressão regular para validar o formato do horário (hh:mm)
+    // Método para validar o formato do horário (hh:mm)
     private static final Pattern HORARIO_PATTERN = Pattern.compile("^(?:[01]\\d|2[0-3]):[0-5]\\d$");
 
     public Filme(int id, String nome, int classe, int duracao, String genero, List<String> horario) {
@@ -30,7 +32,7 @@ public class Filme {
 
     public void setId(int id) {
         if (id <= 0) {
-            throw new IllegalArgumentException("ID do filme deve ser um número positivo.");
+            throw new IllegalArgumentException("A sala do filme deve ser um número positivo.");
         }
         this.id = id;
     }
@@ -103,9 +105,9 @@ public class Filme {
     @Override
     public String toString() {
         return "Filme:" + "\n" +
-                "ID: " + id + "\n" +
+                "Sala: " + id + "\n" +
                 "Nome: " + nome.toUpperCase() + "\n" +
-                "Classe indicativa: " + " anos"+ classe + "\n" +
+                "Classe indicativa: " + classe  + " anos"+ "\n" +
                 "Duração: " + duracao + " min" + "\n" +
                 "Gênero: " + genero.toUpperCase() + "\n" +
                 "Horário de exibição: " + horario ;

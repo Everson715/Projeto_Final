@@ -58,10 +58,10 @@ public class ADM implements MovieManager {
                 databaseOperations.deleteMovie(id);
                 System.out.println("Filme excluído com sucesso!");
             } else {
-                System.out.println("Filme com ID " + id + " não encontrado.");
+                System.out.println("Filme na sala " + id + " não encontrado.");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("ID inválido fornecido: " + e.getMessage());
+            System.out.println("Sala fornecida inválida: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Erro ao excluir o filme: " + e.getMessage());
             e.printStackTrace(); // Opcional: fornece detalhes adicionais sobre a exceção
@@ -100,11 +100,11 @@ public class ADM implements MovieManager {
                 String horario = inputHandler.getHorarioSelecionado();
                 if (movie.getHorario().contains(horario)) {
                     System.out.println("Você selecionou o filme " + movie.getNome() + " às " + horario);
-                } else {
+                    } else {
                     System.out.println("Horário selecionado inválido.");
                 }
             } else {
-                System.out.println("Filme não encontrado com id: " + movieId);
+                System.out.println("Filme não encontrado na Sala: " + movieId);
             }
         } catch (Exception e) {
             System.out.println("Erro ao selecionar o filme e horário: " + e.getMessage());

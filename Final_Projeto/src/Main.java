@@ -16,75 +16,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Implementação concreta do BancoDeDados
-        DatabaseOperations databaseOperations = new BancoDeDados() {
-            @Override
-            public void addMovie(String nome, int classe, int duracao, String genero, List<String> horario) {
-                try {
-                    super.addMovie(nome, classe, duracao, genero, horario);
-                    System.out.println("Filme adicionado com sucesso.");
-                } catch (Exception e) {
-                    System.out.println("Erro ao adicionar filme: " + e.getMessage());
-                }
-            }
-
-            @Override
-            public Optional<Filme> getMovie(int id) {
-                try {
-                    return super.getMovie(id);
-                } catch (Exception e) {
-                    System.out.println("Erro ao buscar filme: " + e.getMessage());
-                    return Optional.empty();
-                }
-            }
-
-            @Override
-            public void updateMovie(int id, String nome, int classe, int duracao, String genero, List<String> horario) {
-                try {
-                    super.updateMovie(id, nome, classe, duracao, genero, horario);
-                    System.out.println("Filme atualizado com sucesso.");
-                } catch (Exception e) {
-                    System.out.println("Erro ao atualizar filme: " + e.getMessage());
-                }
-            }
-
-            @Override
-            public void deleteMovie(int id) {
-                try {
-                    super.deleteMovie(id);
-                    System.out.println("Filme excluído com sucesso.");
-                } catch (Exception e) {
-                    System.out.println("Erro ao excluir filme: " + e.getMessage());
-                }
-            }
-
-            @Override
-            public void listMovies() {
-                try {
-                    super.listMovies();
-                } catch (Exception e) {
-                    System.out.println("Erro ao listar filmes: " + e.getMessage());
-                }
-            }
-
-            @Override
-            public void listMoviesWithShowtimes() {
-                try {
-                    super.listMoviesWithShowtimes();
-                } catch (Exception e) {
-                    System.out.println("Erro ao listar filmes com horários: " + e.getMessage());
-                }
-            }
-
-            @Override
-            public int getMoviesCount() {
-                try {
-                    return super.getMoviesCount();
-                } catch (Exception e) {
-                    System.out.println("Erro ao contar filmes: " + e.getMessage());
-                    return 0;
-                }
-            }
-        };
+        DatabaseOperations databaseOperations = new BancoDeDados(); // Supõe-se que BancoDeDados é uma classe concreta
 
         // Implementação do MovieInputHandler
         MovieInputHandler inputHandler = new MovieInputHandlerImpl(scanner); // Supondo que MovieInputHandlerImpl é a implementação concreta
@@ -97,8 +29,7 @@ public class Main {
 
             // Texto a ser centralizado
             String arteAscii =
-                    "\n"+
-                    "█████╗ ██████╗ ███████╗ ██████╗ ██╗     ██╗   ██╗████████╗███████╗" + "\n" +
+                    		" █████╗ ██████╗ ███████╗ ██████╗ ██╗     ██╗   ██╗████████╗███████╗" + "\n" +
                             "██╔══██╗██╔══██╗██╔════╝██╔═══██╗██║     ██║   ██║╚══██╔══╝██╔════╝" + "\n" +
                             "███████║██████╔╝███████╗██║   ██║██║     ██║   ██║   ██║   █████╗" + "\n" +
                             "██╔══██║██╔══██╗╚════██║██║   ██║██║     ██║   ██║   ██║   ██╔══╝" + "\n" +
@@ -117,7 +48,8 @@ public class Main {
 
             // Texto do menu
             String menuTexto =
-                    "Escolha o tipo de acesso:" + "\n" + "1. ADM" + "\n" +
+                    "Escolha o tipo de acesso:" + "\n" +
+                            "1. ADM" + "\n" +
                             "2. Usuário" + "\n" +
                             "3. Sair";
 
@@ -181,7 +113,7 @@ public class Main {
                     break;
                 case 2:
                     Cliente usuario = new Cliente(scanner, databaseOperations); // Passa o Scanner e DatabaseOperations para a instância Cliente
-                    usuario.mostrarFilmesEIniciarCompra(); // Mostra filmes e inicia compra
+                    usuario.mostrarFilmesEIniciarCompra(); // Interage com o cliente
                     break;
                 case 3:
                     continuar = false; // Encerra o loop e sai do programa
